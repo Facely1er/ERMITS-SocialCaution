@@ -65,7 +65,8 @@
     "helmet-csp": "^2.0.0",
     "express-http-proxy": "^2.0.0",
     "express-ws": "^5.0.2",
-    "ws": "^8.14.2"
+    "ws": "^8.14.2",
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",

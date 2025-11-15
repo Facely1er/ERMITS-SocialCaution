@@ -31,6 +31,8 @@ const notificationRoutes = require('./routes/notifications');
 const challengeRoutes = require('./routes/challenges');
 const progressRoutes = require('./routes/progress');
 const achievementRoutes = require('./routes/achievements');
+const personaRoutes = require('./routes/personas');
+const cautionRoutes = require('./routes/cautions');
 
 const app = express();
 
@@ -169,6 +171,8 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/challenges', challengeRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/achievements', achievementRoutes);
+app.use('/api/personas', personaRoutes);
+app.use('/api/cautions', cautionRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {

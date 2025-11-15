@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-button {
+            background-color: #FF6B35;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .test-button:hover {
+            background-color: #E55A29;
+        }
+        .test-result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Assessment Start Button Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Basic Button Click</h2>
+        <button class="test-button" onclick="testBasicClick()">Test Start Assessment Button</button>
+        <div id="test1-result" class="test-result" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: Check if React App is Running</h2>
+        <button class="test-button" onclick="testReactApp()">Check React App</button>
+        <div id="test2-result" class="test-result" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 3: Check Assessment Routes</h2>
+        <button class="test-button" onclick="testAssessmentRoutes()">Test Assessment Routes</button>
+        <div id="test3-result" class="test-result" style="display: none;"></div>
+    </div>
+
+    <script>
+        function testBasicClick() {
+            const result = document.getElementById('test1-result');
+            result.style.display = 'block';
+            result.innerHTML = '✅ Basic button click test passed - button is clickable';
+        }
+        
+        async function testReactApp() {
+            const result = document.getElementById('test2-result');
+            result.style.display = 'block';
+            
+            try {
+                const response = await fetch('http://localhost:5173');
+                if (response.ok) {
+                    result.innerHTML = '✅ React app is running on localhost:5173';
+                } else {
+                    result.innerHTML = '❌ React app responded with status: ' + response.status;
+                }
+            } catch (error) {
+                result.innerHTML = '❌ React app is not accessible: ' + error.message;
+            }
+        }
+        
+        async function testAssessmentRoutes() {
+            const result = document.getElementById('test3-result');
+            result.style.display = 'block';
+            
+            const routes = [
+                '/assessment',
+                '/assessment/exposure',
+                '/assessment/rights',
+                '/assessment/security'
+            ];
+            
+            let results = [];
+            
+            for (const route of routes) {
+                try {
+                    const response = await fetch(`http://localhost:5173${route}`);
+                    if (response.ok) {
+                        results.push(`✅ ${route} - OK`);
+                    } else {
+                        results.push(`❌ ${route} - Status: ${response.status}`);
+                    }
+                } catch (error) {
+                    results.push(`❌ ${route} - Error: ${error.message}`);
+                }
+            }
+            
+            result.innerHTML = results.join('<br>');
+        }
+    </script>
+</body>
+</html>

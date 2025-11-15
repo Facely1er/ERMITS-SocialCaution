@@ -1,0 +1,36 @@
+# Netlify redirects for SPA routing
+/*    /index.html   200
+
+# Security redirects
+/wp-admin/*  /  301!
+/admin/*     /  301!
+/.env        /  301!
+/.git/*      /  301!
+
+# SEO redirects
+/home        /  301!
+/index       /  301!
+/index.html  /  301!
+
+# Privacy policy canonical
+/privacy     /privacy-policy  301!
+/legal       /privacy-policy  301!
+
+# Assessment redirects for SEO
+/test        /assessment/full  301!
+/quiz        /assessment/full  301!
+/check       /assessment/exposure  301!
+
+# Handle common navigation patterns
+/toolkit     /toolkit-access   301!
+/tools       /toolkit-access   301!
+/search      /                 301!
+/bookmarks   /dashboard        301!
+/profile     /dashboard        301!
+/account     /dashboard        301!
+
+# Handle legacy URLs
+/assessment  /assessment/full  301!
+/test/*      /assessment/full  301!
+/quiz/*      /assessment/full  301!
+

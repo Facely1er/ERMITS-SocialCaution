@@ -1,0 +1,427 @@
+/* Enhanced Blog Content Styles for Better Readability and Visual Engagement */
+
+/* Blog Content Typography */
+.blog-content {
+  @apply max-w-4xl mx-auto;
+
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.7;
+  color: rgb(var(--color-text));
+}
+
+.blog-content h1 {
+  @apply text-4xl md:text-5xl font-bold text-text dark:text-text mb-8 mt-12;
+  
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+
+.blog-content p {
+  @apply text-lg text-text-secondary dark:text-text-secondary mb-6;
+
+  line-height: 1.7;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.blog-content .lead {
+  @apply text-xl md:text-2xl text-text dark:text-text font-medium mb-8;
+
+  line-height: 1.6;
+  color: rgb(var(--color-text));
+}
+
+/* Enhanced Lists */
+.blog-content ul,
+.blog-content ol {
+  @apply mb-6 space-y-3;
+}
+
+.blog-content li {
+  @apply text-lg text-text-secondary dark:text-text-secondary;
+
+  line-height: 1.7;
+  position: relative;
+}
+
+.blog-content ul li {
+  @apply pl-6;
+}
+
+.blog-content ul li::before {
+  content: '•';
+
+  @apply absolute left-0 text-accent font-bold text-xl;
+
+  top: 0;
+}
+
+.blog-content ol {
+  counter-reset: custom-counter;
+}
+
+.blog-content ol li {
+  @apply pl-8;
+
+  counter-increment: custom-counter;
+}
+
+.blog-content ol li::before {
+  content: counter(custom-counter) '.';
+
+  @apply absolute left-0 text-accent font-bold;
+
+  top: 0;
+  width: 1.5rem;
+}
+
+/* Enhanced Blockquotes */
+.blog-content blockquote {
+  @apply border-l-4 border-accent bg-accent/5 dark:bg-accent/10 p-6 my-8 rounded-r-lg;
+
+  font-style: italic;
+  position: relative;
+}
+
+.blog-content blockquote::before {
+  content: '"';
+
+  @apply absolute -top-2 -left-2 text-6xl text-accent/30 font-serif;
+
+  line-height: 1;
+}
+
+.blog-content blockquote p {
+  @apply text-lg text-text dark:text-text mb-0;
+
+  font-style: italic;
+}
+
+/* Code Blocks and Inline Code */
+.blog-content code {
+  @apply bg-gray-100 dark:bg-gray-800 text-accent px-2 py-1 rounded text-sm font-mono;
+
+  font-size: 0.9em;
+}
+
+.blog-content pre {
+  @apply bg-gray-900 dark:bg-gray-950 text-gray-100 p-6 rounded-lg my-8 overflow-x-auto;
+
+  font-family: 'Fira Code', Monaco, 'Cascadia Code', monospace;
+  font-size: 0.9em;
+  line-height: 1.6;
+  border: 1px solid rgb(var(--color-border));
+}
+
+.blog-content pre code {
+  @apply bg-transparent text-gray-100 p-0;
+
+  font-size: inherit;
+}
+
+/* Enhanced Tables */
+.blog-content table {
+  @apply w-full border-collapse my-8 rounded-lg overflow-hidden;
+
+  border: 1px solid rgb(var(--color-border));
+}
+
+.blog-content th {
+  @apply bg-accent/10 dark:bg-accent/20 text-text dark:text-text font-semibold p-4 text-left;
+
+  border-bottom: 2px solid rgb(var(--color-border));
+}
+
+.blog-content td {
+  @apply p-4 text-text-secondary dark:text-text-secondary border-b border-border;
+}
+
+.blog-content tr:hover {
+  @apply bg-accent/5 dark:bg-accent/10;
+}
+
+/* Enhanced Links */
+.blog-content a {
+  @apply text-accent hover:text-accent-dark underline decoration-2 underline-offset-2 transition-colors;
+}
+
+.blog-content a:hover {
+  @apply decoration-accent-dark;
+}
+
+/* Image Enhancements */
+.blog-content img {
+  @apply w-full h-auto rounded-lg my-8 shadow-lg;
+
+  max-width: 100%;
+  height: auto;
+}
+
+.blog-content .image-caption {
+  @apply text-sm text-text-secondary dark:text-text-secondary text-center mt-2 italic;
+}
+
+/* Callout Boxes */
+.blog-content .callout {
+  @apply p-6 rounded-lg my-8 border-l-4;
+}
+
+.blog-content .callout.info {
+  @apply bg-blue-50 dark:bg-blue-950/20 border-blue-500;
+}
+
+.blog-content .callout.warning {
+  @apply bg-yellow-50 dark:bg-yellow-950/20 border-yellow-500;
+}
+
+.blog-content .callout.success {
+  @apply bg-green-50 dark:bg-green-950/20 border-green-500;
+}
+
+.blog-content .callout.danger {
+  @apply bg-red-50 dark:bg-red-950/20 border-red-500;
+}
+
+/* Reading Progress Bar */
+.reading-progress {
+  @apply fixed top-0 left-0 w-full h-1 bg-accent/20 z-50;
+}
+
+.reading-progress-bar {
+  @apply h-full bg-accent transition-all duration-300 ease-out;
+
+  width: 0%;
+}
+
+/* Table of Contents */
+.toc {
+  @apply bg-card dark:bg-card border border-border rounded-lg p-6 sticky top-24;
+
+  max-height: calc(100vh - 8rem);
+  overflow-y: auto;
+  /* Safari fallback - use webkit scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-accent)) transparent;
+}
+
+.toc::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-accent));
+  border-radius: 2px;
+}
+
+.toc h3 {
+  @apply text-lg font-semibold text-text dark:text-text mb-4 flex items-center;
+}
+
+.toc ul {
+  @apply space-y-1;
+}
+
+.toc li {
+  @apply text-sm;
+}
+
+.toc a {
+  @apply text-text-secondary dark:text-text-secondary hover:text-accent transition-colors block py-1 px-2 rounded;
+
+  text-decoration: none;
+}
+
+.toc a:hover {
+  @apply bg-accent/10;
+}
+
+.toc a.active {
+  @apply text-accent font-medium bg-accent/10;
+}
+
+/* Enhanced heading styles for better visual hierarchy */
+.blog-content h2 {
+  @apply text-3xl md:text-4xl font-bold text-text dark:text-text mb-6 mt-10;
+
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  position: relative;
+  scroll-margin-top: 100px;
+}
+
+.blog-content h2::before {
+  content: '';
+
+  @apply absolute -left-4 top-0 w-1 h-full bg-accent rounded-full;
+
+  transform: translateX(-8px);
+}
+
+.blog-content h3 {
+  @apply text-2xl md:text-3xl font-semibold text-text dark:text-text mb-4 mt-8;
+
+  line-height: 1.4;
+  scroll-margin-top: 100px;
+}
+
+.blog-content h4 {
+  @apply text-xl md:text-2xl font-semibold text-text dark:text-text mb-3 mt-6;
+
+  line-height: 1.4;
+  scroll-margin-top: 100px;
+}
+
+/* Author Bio Enhancement */
+.author-bio {
+  @apply bg-gradient-to-r from-accent/5 to-accent/10 dark:from-accent/10 dark:to-accent/20 p-8 rounded-lg border border-accent/20;
+}
+
+.author-bio .avatar {
+  @apply w-20 h-20 rounded-full object-cover border-4 border-white dark:border-card shadow-lg;
+}
+
+/* Related Posts Enhancement */
+.related-posts {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6 mt-12;
+}
+
+.related-post-card {
+  @apply bg-card dark:bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300;
+}
+
+.related-post-card:hover {
+  @apply transform -translate-y-1;
+}
+
+.related-post-card img {
+  @apply w-full h-48 object-cover;
+}
+
+.related-post-card .content {
+  @apply p-6;
+}
+
+/* Social Sharing */
+.social-sharing {
+  @apply flex items-center space-x-4 py-6 border-t border-border;
+}
+
+.social-sharing button {
+  @apply flex items-center justify-center w-10 h-10 rounded-full bg-accent/10 hover:bg-accent text-accent hover:text-white transition-all duration-300;
+}
+
+/* Reading Time and Stats */
+.reading-stats {
+  @apply flex items-center space-x-6 text-sm text-text-secondary dark:text-text-secondary py-4 border-b border-border;
+}
+
+.reading-stats .stat {
+  @apply flex items-center space-x-2;
+}
+
+/* Enhanced heading interactions */
+.blog-content h2:hover,
+.blog-content h3:hover,
+.blog-content h4:hover {
+  @apply text-accent transition-colors duration-200;
+}
+
+/* Section dividers for better visual separation */
+.blog-content h2:not(:first-child) {
+  @apply border-t border-border pt-8 mt-12;
+}
+
+/* Mobile Optimizations */
+@media (width <= 768px) {
+  .blog-content {
+    @apply px-4;
+  }
+  
+  .blog-content h1 {
+    @apply text-3xl;
+  }
+  
+  .blog-content h2 {
+    @apply text-2xl;
+  }
+  
+  .blog-content h2::before {
+    @apply hidden;
+  }
+  
+  .blog-content h2:not(:first-child) {
+    @apply border-t-0 pt-0 mt-8;
+  }
+  
+  .blog-content p {
+    @apply text-base;
+  }
+  
+  .toc {
+    @apply static mb-8;
+
+    max-height: none;
+  }
+  
+  .related-posts {
+    @apply grid-cols-1;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .blog-content {
+    @apply text-black;
+  }
+  
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3,
+  .blog-content h4 {
+    @apply text-black;
+  }
+  
+  .blog-content a {
+    @apply text-black underline;
+  }
+  
+  .toc,
+  .social-sharing,
+  .reading-progress {
+    @apply hidden;
+  }
+}
+
+/* Dark mode specific adjustments */
+.dark .blog-content blockquote {
+  @apply bg-accent/10;
+}
+
+.dark .blog-content code {
+  @apply bg-gray-800 text-accent;
+}
+
+.dark .blog-content pre {
+  @apply bg-gray-950;
+}
+
+.dark .blog-content table {
+  @apply border-gray-700;
+}
+
+.dark .blog-content th {
+  @apply bg-accent/20;
+}
+
+.dark .blog-content td {
+  @apply border-gray-700;
+}
+
+.dark .blog-content tr:hover {
+  @apply bg-accent/10;
+}

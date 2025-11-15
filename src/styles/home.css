@@ -1,0 +1,230 @@
+/* Hero section styles */
+.hero-section {
+  position: relative;
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-floating-element {
+  position: absolute;
+  background-color: rgb(255 255 255 / 10%);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 5;
+}
+
+/* Dark mode adjustments - ensure hero section remains consistent */
+.dark .hero-section {
+  background-color: var(--color-primary) !important;
+}
+
+.dark .hero-floating-element {
+  background-color: rgb(255 255 255 / 15%);
+}
+
+.dark .hero-content h1,
+.dark .hero-content p {
+  color: white !important;
+}
+
+/* Ensure hero content text is always white in both themes */
+.hero-content h1,
+.hero-content p,
+.hero-content span {
+  color: white !important;
+}
+
+/* Improved contrast for dark mode text */
+.dark .text-gray-300 {
+  color: rgb(229 231 235 / 100%); /* Brighter gray for better contrast */
+}
+
+.dark .text-gray-400 {
+  color: rgb(209 213 219 / 100%); /* Brighter gray for better contrast */
+}
+
+/* Welcome walkthrough styles */
+.walkthrough-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0 0 0 / 50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.walkthrough-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 10px 10px -5px rgb(0 0 0 / 4%);
+  max-width: 28rem;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .walkthrough-card {
+  background-color: var(--color-card);
+}
+
+.walkthrough-progress {
+  height: 0.25rem;
+  background-color: var(--color-gray-200);
+}
+
+.dark .walkthrough-progress {
+  background-color: var(--color-gray-700);
+}
+
+.walkthrough-progress-bar {
+  height: 100%;
+  background-color: var(--color-accent);
+}
+
+/* Privacy journey section */
+.journey-step {
+  position: relative;
+  text-align: center;
+}
+
+.journey-step-number {
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-accent);
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.journey-step-icon {
+  background-color: white;
+  border-radius: 9999px;
+  padding: 1.5rem;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto 1.5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.dark .journey-step-icon {
+  background-color: var(--color-card);
+}
+
+.journey-connector {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 100%;
+  height: 0.125rem;
+  background-color: var(--color-gray-200);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.dark .journey-connector {
+  background-color: var(--color-gray-700);
+}
+
+.journey-connector-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%) rotate(45deg);
+  width: 0.75rem;
+  height: 0.75rem;
+  border-top: 0.125rem solid var(--color-gray-200);
+  border-right: 0.125rem solid var(--color-gray-200);
+}
+
+.dark .journey-connector-arrow {
+  border-color: var(--color-gray-700);
+}
+
+/* Assessment tool specific styles */
+.assessment-hero-gradient {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e8f1f9 50%, #f0f7ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .assessment-hero-gradient {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%);
+}
+
+.assessment-glow {
+  box-shadow: 0 0 30px rgb(255 107 53 / 30%), 0 0 60px rgb(255 107 53 / 10%);
+}
+
+.assessment-icon-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.assessment-shimmer {
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 40%), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* How It Works timeline gradient */
+.how-it-works-timeline {
+  background: linear-gradient(to right, rgb(var(--color-accent)), rgb(var(--color-warning)), rgb(var(--color-success)), rgb(var(--color-primary)));
+}
+
+/* Privacy Journey Demo - Progress bars using CSS variables */
+.privacy-journey-progress-line {
+  width: var(--progress-width, 0%);
+}
+
+.privacy-journey-progress-bar {
+  width: var(--progress-bar-width, 0%);
+}
+
+.privacy-journey-metric-bar {
+  width: var(--metric-width, 0%);
+}
+
+.privacy-journey-roadmap-progress {
+  width: var(--roadmap-progress-width, 0%);
+}
+
+.privacy-journey-improvement-bar {
+  width: var(--improvement-width, 0%);
+}

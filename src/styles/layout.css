@@ -1,0 +1,219 @@
+/* Layout styles */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure the page takes up at least the full viewport height */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* Flex layout for page structure */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+/* Ensure footer stays at bottom without gap */
+.mt-auto {
+  margin-top: auto;
+}
+
+/* Fix for the gap between content and footer */
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-top: 4rem !important; /* Increased padding for fixed navbar */
+}
+
+/* When breadcrumbs are present, add extra padding to account for sticky breadcrumb bar */
+main.with-breadcrumbs {
+  padding-top: 5.5rem !important; /* 4rem for navbar + 1.5rem for breadcrumb bar (py-2 + h-8) */
+}
+
+/* PageLayout main content padding */
+.page-layout-main {
+  padding-top: 4rem !important; /* Account for fixed navbar */
+}
+
+/* Sticky second navbar styles */
+.sticky-navbar {
+  position: sticky;
+  top: 4rem; /* Position below the main navbar */
+  z-index: 40;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
+}
+
+.dark .sticky-navbar {
+  background: var(--color-card);
+  border-bottom-color: var(--color-border);
+}
+
+/* Responsive padding adjustments */
+@media (width <= 768px) {
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  main {
+    padding-top: 4rem !important;
+  }
+  
+  main.with-breadcrumbs {
+    padding-top: 5.5rem !important; /* 4rem for navbar + 1.5rem for breadcrumb bar (py-2 + h-8) */
+  }
+  
+  .page-layout-main {
+    padding-top: 4rem !important; /* Account for fixed navbar */
+  }
+}
+
+/* Ensure sections fill available space */
+section {
+  padding: 2rem 0; /* Reduced from 3rem to 2rem */
+}
+
+/* Remove extra space at the bottom of the page */
+.flex-grow > section:last-child {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Remove spacing between sections */
+section + section {
+  padding-top: 0;
+}
+
+/* Adjust spacing for specific sections */
+.bg-light-blue + .bg-white,
+.bg-white + .bg-light-blue,
+.bg-primary + .bg-light-blue,
+.bg-light-blue + .bg-primary {
+  padding-top: 0;
+}
+
+/* Compact spacing for mobile */
+@media (width <= 640px) {
+  section {
+    padding: 1.5rem 0;
+  }
+  
+  main.with-breadcrumbs {
+    padding-top: 5rem !important; /* 3.5rem for navbar + 1.5rem for breadcrumb bar (py-2 + h-8) */
+  }
+  
+  .page-layout-main {
+    padding-top: 3.5rem !important; /* Account for fixed navbar on mobile */
+  }
+}
+
+/* Section background colors for better distinction */
+.section-primary {
+  background-color: transparent; /* Changed from var(--color-primary) to transparent */
+  color: white;
+}
+
+.section-light-blue {
+  background-color: #f0f7ff;
+}
+
+.section-white {
+  background-color: white;
+}
+
+.section-accent {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.section-accent-light {
+  background-color: rgb(255 107 53 / 5%);
+}
+
+.section-gray {
+  background-color: #f9fafb;
+}
+
+/* Dark mode section backgrounds */
+.dark .section-white {
+  background-color: var(--color-background);
+}
+
+.dark .section-light-blue {
+  background-color: var(--color-background-secondary);
+}
+
+.dark .section-gray {
+  background-color: var(--color-background-secondary);
+}
+
+.dark .section-accent-light {
+  background-color: rgb(255 107 53 / 10%);
+}
+
+/* Dark mode for accent section - ensure it stays orange in dark mode */
+.dark .bg-accent,
+.dark .section-accent,
+.dark section.bg-accent {
+  background-color: #FF6B35 !important;
+  color: white;
+}
+
+/* Hero section specific styles */
+.hero-section {
+  padding-top: 4rem; /* Add padding to account for navbar */
+  padding-bottom: 2rem;
+}
+
+/* CTA section specific styles */
+section.bg-accent {
+  background-color: #FF6B35 !important;
+}
+
+/* Page hero sections */
+.page-hero {
+  background-color: var(--color-primary);
+  color: white;
+  padding-top: 6rem; /* Extra padding to account for fixed header */
+  padding-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero h1,
+.page-hero p,
+.page-hero .text-gray-200,
+.page-hero .text-gray-300 {
+  color: white !important;
+}
+
+.dark .page-hero h1,
+.dark .page-hero p,
+.dark .page-hero .text-gray-200,
+.dark .page-hero .text-gray-300 {
+  color: white !important;
+}
+
+.page-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, var(--color-primary), var(--color-accent));
+  opacity: 0.9;
+}
+
+/* Fix for section padding after hero */
+.page-hero + section {
+  padding-top: 2rem;
+}

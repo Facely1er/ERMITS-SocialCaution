@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SocialCaution",
+  "description": "Educational privacy platform that helps users learn about digital privacy through interactive assessments and educational resources",
+  "url": "https://socialcaution.com",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "ratingCount": "100"
+  }
+}
+

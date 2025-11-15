@@ -1,0 +1,27 @@
+/* Styles for noscript fallback */
+.noscript-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  padding: 20px;
+  text-align: center;
+  background: #f9fafb;
+}
+
+.noscript-content {
+  max-width: 600px;
+}
+
+.noscript-title {
+  color: #dc2626;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.noscript-text {
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+

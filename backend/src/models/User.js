@@ -80,6 +80,11 @@ const userSchema = new mongoose.Schema({
       }
     }
   },
+  selectedPersona: {
+    type: String,
+    ref: 'Persona',
+    default: null
+  },
   privacyProfile: {
     persona: {
       type: String,

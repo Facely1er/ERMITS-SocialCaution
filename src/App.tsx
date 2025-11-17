@@ -14,6 +14,11 @@ import PerformanceMonitor from './components/common/PerformanceMonitor';
 // Eagerly loaded core components
 import HomePage from './pages/HomePage';
 
+// MVP Pages (for simplified persona-based privacy caution system)
+const PersonaSelection = lazy(() => import('./pages/PersonaSelection'));
+const CautionFeed = lazy(() => import('./pages/CautionFeed'));
+const SimpleDashboard = lazy(() => import('./pages/SimpleDashboard'));
+
 // Lazily loaded page components grouped by feature
 // Assessment related pages
 const AssessmentPage = lazy(() => import('./pages/AssessmentPage'));
@@ -130,7 +135,12 @@ const router = createBrowserRouter(
     <Route element={<Layout />}>
                       {/* Main Routes - Home page loaded eagerly for fast initial render */}
                       <Route path="/" element={<HomePage />} />
-                      
+
+                      {/* MVP Routes - Simplified persona-based privacy caution system */}
+                      <Route path="/persona-selection" element={<PersonaSelection />} />
+                      <Route path="/cautions" element={<CautionFeed />} />
+                      <Route path="/simple-dashboard" element={<SimpleDashboard />} />
+
                       {/* Core pages */}
                       <Route path="/about" element={<AboutPage />} />
                       <Route path="/features" element={<FeaturesPage />} />

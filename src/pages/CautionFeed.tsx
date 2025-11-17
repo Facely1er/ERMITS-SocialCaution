@@ -97,6 +97,12 @@ export default function CautionFeed() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
+
+    // Validate date
+    if (isNaN(date.getTime())) {
+      return 'Date unavailable';
+    }
+
     const now = new Date();
     const diffMs = now.getTime() - date.getTime();
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
@@ -195,11 +201,15 @@ export default function CautionFeed() {
               >
                 <option value="">All</option>
                 <option value="data-breach">Data Breach</option>
+                <option value="device-security">Device Security</option>
+                <option value="financial-fraud">Financial Fraud</option>
+                <option value="identity-theft">Identity Theft</option>
+                <option value="online-safety">Online Safety</option>
+                <option value="parental-controls">Parental Controls</option>
                 <option value="phishing">Phishing</option>
+                <option value="privacy-laws">Privacy Laws</option>
                 <option value="scams">Scams</option>
                 <option value="social-media">Social Media</option>
-                <option value="privacy-laws">Privacy Laws</option>
-                <option value="identity-theft">Identity Theft</option>
               </select>
             </div>
 

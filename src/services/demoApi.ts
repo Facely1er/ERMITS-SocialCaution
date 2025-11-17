@@ -13,11 +13,20 @@ const STORAGE_KEY = 'ermits-demo-data';
 // Simulate network delay
 const delay = (ms: number = 500) => new Promise(resolve => setTimeout(resolve, ms));
 
-// Get demo data from localStorage
+// Get demo data from localStorage with error handling
 const getDemoData = () => {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored) {
-    return JSON.parse(stored);
+  try {
+    const stored = localStorage?.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (parseError) {
+        console.error('Failed to parse demo data, resetting:', parseError);
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+  } catch (storageError) {
+    console.warn('localStorage not available, using in-memory storage:', storageError);
   }
   return {
     user: { ...mockUser },
@@ -25,9 +34,13 @@ const getDemoData = () => {
   };
 };
 
-// Save demo data to localStorage
+// Save demo data to localStorage with error handling
 const saveDemoData = (data: any) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  try {
+    localStorage?.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch (error) {
+    console.warn('Failed to save demo data to localStorage:', error);
+  }
 };
 
 // Demo API implementation

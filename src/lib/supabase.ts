@@ -251,9 +251,18 @@ export interface Database {
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+// Check if Supabase is configured - allow demo mode without Supabase
+const isSupabaseConfigured = supabaseUrl && supabaseAnonKey;
+
+if (!isSupabaseConfigured) {
+  console.warn('Supabase environment variables not configured. Running in demo mode without backend.');
 }
 
-// Create a single Supabase client instance to avoid multiple GoTrueClient instances
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey);
+// Create Supabase client only if configured, otherwise create a null placeholder
+// This allows the app to run in demo mode without Supabase
+export const supabase = isSupabaseConfigured
+  ? createClient<Database>(supabaseUrl, supabaseAnonKey)
+  : null as unknown as ReturnType<typeof createClient<Database>>;
+
+// Helper to check if Supabase is available
+export const isSupabaseAvailable = (): boolean => isSupabaseConfigured;

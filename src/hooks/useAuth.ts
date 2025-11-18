@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseAvailable } from '../lib/supabase';
 import type { User } from '@supabase/supabase-js';
 
 export const useAuth = () => {
@@ -7,6 +7,12 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Skip if Supabase is not configured (demo mode)
+    if (!isSupabaseAvailable()) {
+      setLoading(false);
+      return;
+    }
+
     // Get initial session
     const getInitialSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
@@ -31,6 +37,9 @@ export const useAuth = () => {
     firstName: string;
     lastName: string;
   }) => {
+    if (!isSupabaseAvailable()) {
+      throw new Error('Authentication not available in demo mode');
+    }
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -47,6 +56,9 @@ export const useAuth = () => {
   };
 
   const signIn = async (email: string, password: string) => {
+    if (!isSupabaseAvailable()) {
+      throw new Error('Authentication not available in demo mode');
+    }
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -57,11 +69,15 @@ export const useAuth = () => {
   };
 
   const signOut = async () => {
+    if (!isSupabaseAvailable()) return;
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   };
 
   const resetPassword = async (email: string) => {
+    if (!isSupabaseAvailable()) {
+      throw new Error('Password reset not available in demo mode');
+    }
     const { error } = await supabase.auth.resetPasswordForEmail(email);
     if (error) throw error;
   };

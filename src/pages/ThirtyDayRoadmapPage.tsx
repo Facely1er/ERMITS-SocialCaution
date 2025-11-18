@@ -27,7 +27,7 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import { useThirtyDayChallengeStore } from '../store/thirtyDayChallengeStore';
 import { useProgressStore } from '../store/progressStore';
-import { supabase } from '../lib/supabase';
+import { supabase, isSupabaseAvailable } from '../lib/supabase';
 import { Link } from 'react-router-dom';
 const ThirtyDayRoadmapPage: React.FC = () => {
   const [selectedDay, setSelectedDay] = useState(1);
@@ -55,9 +55,14 @@ const ThirtyDayRoadmapPage: React.FC = () => {
   useEffect(() => {
     const checkAuthAndLoadData = async () => {
       try {
+        if (!isSupabaseAvailable()) {
+          setIsAuthenticated(false);
+          return;
+        }
+
         const { data: { user } } = await supabase.auth.getUser();
         setIsAuthenticated(!!user);
-        
+
         if (user) {
           await loadChallenge(user.id);
         }
@@ -97,7 +102,7 @@ const ThirtyDayRoadmapPage: React.FC = () => {
       addPoints(50, 'challenge-start');
       checkThirtyDayAchievements(0, true);
       
-      if (isAuthenticated) {
+      if (isAuthenticated && isSupabaseAvailable()) {
         const { data: { user } } = await supabase.auth.getUser();
         if (user) {
           await syncWithBackend(user.id);
@@ -113,8 +118,8 @@ const ThirtyDayRoadmapPage: React.FC = () => {
       await completeTask(taskId);
       addPoints(20, 'task-completion');
       checkThirtyDayAchievements(completedTasksCount + 1, true);
-      
-      if (isAuthenticated) {
+
+      if (isAuthenticated && isSupabaseAvailable()) {
         const { data: { user } } = await supabase.auth.getUser();
         if (user) {
           await syncWithBackend(user.id);
@@ -129,8 +134,8 @@ const ThirtyDayRoadmapPage: React.FC = () => {
     if (window.confirm('Are you sure you want to reset your 30-day challenge progress?')) {
       try {
         await resetChallenge();
-        
-        if (isAuthenticated) {
+
+        if (isAuthenticated && isSupabaseAvailable()) {
           const { data: { user } } = await supabase.auth.getUser();
           if (user) {
             await syncWithBackend(user.id);

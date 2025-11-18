@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import logger from '../utils/logger';
+import type { Persona } from '../services/cautionApi';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -53,14 +55,10 @@ export default function SimpleDashboard() {
   const navigate = useNavigate();
   const [stats, setStats] = useState<CautionStats | null>(null);
   const [recentCautions, setRecentCautions] = useState<CautionItem[]>([]);
-  const [currentPersona, setCurrentPersona] = useState<any>(null);
+  const [currentPersona, setCurrentPersona] = useState<Persona | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadDashboardData();
-  }, []);
-
-  const loadDashboardData = async () => {
+  const loadDashboardData = useCallback(async () => {
     try {
       setLoading(true);
       const [persona, statsData, cautionsData] = await Promise.all([
@@ -78,14 +76,18 @@ export default function SimpleDashboard() {
       setStats(statsData);
       setRecentCautions(cautionsData.data);
     } catch (err: any) {
-      console.error('Failed to load dashboard:', err);
+      logger.error('Failed to load dashboard:', err);
       if (err.response?.status === 400) {
         navigate('/persona-selection');
       }
     } finally {
       setLoading(false);
     }
-  };
+  }, [navigate]);
+
+  useEffect(() => {
+    loadDashboardData();
+  }, [loadDashboardData]);
 
   if (loading) {
     return (

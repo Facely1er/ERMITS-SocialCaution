@@ -158,7 +158,7 @@ export const demoApi = {
   },
 
   // Auth (demo mode)
-  login: async (email: string, password: string): Promise<{ user: any; token: string }> => {
+  login: async (_email: string, _password: string): Promise<{ user: any; token: string }> => {
     await delay();
     const demoData = getDemoData();
     return {

@@ -1,7 +1,7 @@
 module.exports = (ctx) => {
   return {
     plugins: {
-      tailwindcss: {},
+      '@tailwindcss/postcss': {},
       autoprefixer: {},
     },
     // Ensure PostCSS has proper context for asset resolution

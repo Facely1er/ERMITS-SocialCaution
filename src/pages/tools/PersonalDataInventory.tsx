@@ -223,14 +223,6 @@ const PersonalDataInventory: React.FC = () => {
     <PageLayout
       title={'Personal Data Inventory'}
       subtitle={'Inventory and manage your personal data'}
-      description={'Create a comprehensive inventory of your personal data to better understand what is collected and shared.'}
-      heroBackground={false}
-      backgroundType="toolkit"
-      breadcrumbs={[
-        { label: 'Resources', path: '/resources' },
-        { label: 'Tools', path: '/resources/tools' },
-        { label: 'Data Inventory', path: '/resources/tools/personal-data-inventory' }
-      ]}
     >
       {/* Real Tool Indicator */}
       <div className="mb-6">
@@ -261,18 +253,20 @@ const PersonalDataInventory: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card 
-                  className="p-4 cursor-pointer hover:shadow-lg transition-all"
-                  onClick={() => setSelectedCategory(category.id)}
+                <div
                   role="button"
                   tabIndex={0}
-                  onKeyDown={(e) => {
+                  onKeyDown={(e: React.KeyboardEvent) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
                       setSelectedCategory(category.id);
                     }
                   }}
                 >
+                  <Card 
+                    className="p-4 cursor-pointer hover:shadow-lg transition-all"
+                    onClick={() => setSelectedCategory(category.id)}
+                  >
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center">
                       <Icon className="h-5 w-5 mr-2" />
@@ -291,7 +285,8 @@ const PersonalDataInventory: React.FC = () => {
                       {category.highSensitivity} {'sensitive data'}
                     </div>
                   )}
-                </Card>
+                  </Card>
+                </div>
               </motion.div>
             );
           })}

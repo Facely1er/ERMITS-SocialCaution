@@ -24,7 +24,49 @@ interface NavItem {
 // Reorganized dropdown structure
 const DropdownGroup = ({ label, icon: LabelIcon, items }: any) => {
   const [open, setOpen] = useState(false);
+  const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLElement | null>(null);
+  
+  // Adjust dropdown position to prevent viewport overflow
+  useEffect(() => {
+    const updatePosition = () => {
+      if (open && dropdownRef.current) {
+        const rect = dropdownRef.current.getBoundingClientRect();
+        const menuWidth = 224; // w-56 = 14rem = 224px
+        const viewportWidth = window.innerWidth;
+        const spaceOnRight = viewportWidth - rect.right;
+        
+        const style: React.CSSProperties = {
+          position: 'absolute',
+          zIndex: 1100,
+          minWidth: '14rem',
+        };
+        
+        // If dropdown would overflow on the right, align to the right edge of button
+        if (spaceOnRight < menuWidth && rect.left >= menuWidth) {
+          style.right = 0;
+          style.left = 'auto';
+        } else {
+          style.left = 0;
+          style.right = 'auto';
+        }
+        
+        setDropdownStyle(style);
+      }
+    };
+    
+    if (open) {
+      updatePosition();
+      window.addEventListener('resize', updatePosition);
+      window.addEventListener('scroll', updatePosition, true);
+      
+      return () => {
+        window.removeEventListener('resize', updatePosition);
+        window.removeEventListener('scroll', updatePosition, true);
+      };
+    }
+  }, [open]);
   
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -47,6 +89,7 @@ const DropdownGroup = ({ label, icon: LabelIcon, items }: any) => {
     <div
       className="relative dropdown-container"
       ref={dropdownRef}
+      style={{ overflow: 'visible' }}
     >
       <button 
         className="flex items-center gap-1.5 text-white hover:text-white hover:bg-white/10 px-3 py-2 rounded-md transition-all duration-200 group whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
@@ -66,9 +109,11 @@ const DropdownGroup = ({ label, icon: LabelIcon, items }: any) => {
       </button>
       {open && (
         <nav
+          ref={menuRef}
           className="dropdown-menu absolute top-full left-0 mt-1 w-56 z-[1100] rounded-md bg-card text-text shadow-xl border border-border"
           role="navigation"
           aria-label={`${label} submenu`}
+          style={dropdownStyle}
         >
           {items.map(({ path, label, icon: Icon, highlight }: any) => (
             <NavLink

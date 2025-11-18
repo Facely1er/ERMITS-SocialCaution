@@ -1,5 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw, Home, Mail, ArrowLeft } from 'lucide-react';
+import logger from '../../utils/logger';
 
 interface EnhancedErrorBoundaryProps {
   children: ReactNode;
@@ -59,8 +60,8 @@ class EnhancedErrorBoundary extends Component<EnhancedErrorBoundaryProps, Enhanc
       component: this.props.fallbackComponent || 'unknown'
     };
 
-    // Log to console
-    console.error('Enhanced Error Boundary:', errorData);
+    // Log error using logger utility
+    logger.error('Enhanced Error Boundary:', errorData);
 
     // Send to monitoring service if available
     if (typeof (window as any).gtag !== 'undefined') {
@@ -77,7 +78,7 @@ class EnhancedErrorBoundary extends Component<EnhancedErrorBoundaryProps, Enhanc
     try {
       localStorage.setItem('last_error', JSON.stringify(errorData));
     } catch (e) {
-      console.warn('Could not store error data:', e);
+      logger.warn('Could not store error data:', e);
     }
   }
 

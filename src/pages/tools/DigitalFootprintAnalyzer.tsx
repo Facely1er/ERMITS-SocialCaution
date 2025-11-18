@@ -9,6 +9,7 @@ import { ToolsApiService } from '../../services/toolsApi';
 import { Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import logger from '../../utils/logger';
 
 interface DigitalFootprintResult {
   id: string;
@@ -168,12 +169,12 @@ const DigitalFootprintAnalyzer: React.FC = () => {
       try {
         await loadAnalysisHistory();
       } catch (historyError) {
-        console.warn('Failed to reload analysis history:', historyError);
+        logger.warn('Failed to reload analysis history:', historyError);
         // Don't show error to user as this is not critical
       }
       
     } catch (error: any) {
-      console.error('Analysis error:', error);
+      logger.error('Analysis error:', error);
       
       let errorMessage = 'Analysis failed. Please try again.';
       

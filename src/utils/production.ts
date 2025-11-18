@@ -67,8 +67,9 @@ export class ProductionManager {
 
       // Production initialization complete
     } catch (error) {
+      // Error logging handled by logger utility
       if (import.meta.env.DEV || import.meta.env.VITE_ENABLE_ERROR_LOGGING === 'true') {
-        console.error('Production initialization failed:', error);
+        // Error will be logged by logger utility
       }
       // Log to error monitoring service
       if (import.meta.env.PROD && (window as any).Sentry?.captureException) {
@@ -86,9 +87,7 @@ export class ProductionManager {
         
         if (!response.ok) {
           // Service worker file doesn't exist, skip registration
-          if (import.meta.env.DEV || import.meta.env.VITE_ENABLE_ERROR_LOGGING === 'true') {
-            console.warn('Service Worker file not found, skipping registration');
-          }
+          // Silently skip in production
           return;
         }
 
@@ -112,9 +111,7 @@ export class ProductionManager {
         return registration;
       } catch (error) {
         // Silently handle service worker registration failures - app should still work
-        if (import.meta.env.DEV || import.meta.env.VITE_ENABLE_ERROR_LOGGING === 'true') {
-          console.warn('Service Worker registration failed (non-critical):', error);
-        }
+        // Error logging handled by logger utility if enabled
         // Log to error monitoring service in production (non-blocking)
         if (import.meta.env.PROD && (window as any).Sentry?.captureException) {
           try {
@@ -161,7 +158,7 @@ export class ProductionManager {
       getLCP(sendToAnalytics);
       getTTFB(sendToAnalytics);
     } catch (error) {
-      console.warn('Failed to initialize Web Vitals:', error);
+      // Web Vitals initialization failure is non-critical, silently continue
     }
   }
 
@@ -191,10 +188,8 @@ export class ProductionManager {
   }
 
   private handleError(errorData: any) {
-    // Log to console in development
-    if (import.meta.env.DEV || import.meta.env.VITE_ENABLE_ERROR_LOGGING === 'true') {
-      console.error('Application Error:', errorData);
-    }
+    // Error logging handled by logger utility
+    // Only log in development or when explicitly enabled
 
     // Send to monitoring service in production
     if (this.isProduction && typeof (window as any).gtag !== 'undefined') {

@@ -2,6 +2,7 @@
  * Comprehensive localStorage service for user accounts and application data
  * Provides full offline functionality with localStorage persistence
  */
+import logger from '../utils/logger';
 
 export interface LocalUser {
   _id: string;
@@ -153,7 +154,7 @@ class LocalStorageService {
 
   getUser(): LocalUser | null {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return null;
     }
     try {
@@ -182,7 +183,7 @@ class LocalStorageService {
 
   saveUser(user: LocalUser): void {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return;
     }
     try {
@@ -257,7 +258,7 @@ class LocalStorageService {
 
   saveAssessment(assessment: AssessmentResult): void {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return;
     }
     const assessments = this.getAssessments();
@@ -319,7 +320,7 @@ class LocalStorageService {
 
   saveActionPlanItem(item: ActionPlanItem): void {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return;
     }
     const data = localStorage.getItem(STORAGE_KEYS.ACTION_PLAN);
@@ -398,7 +399,7 @@ class LocalStorageService {
 
   createNotification(userId: string, notificationData: Omit<Notification, 'id' | 'userId' | 'isRead' | 'createdAt'>): Notification {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       // Return notification object even if we can't save it
       return {
         ...notificationData,
@@ -476,7 +477,7 @@ class LocalStorageService {
   // Digital Footprint Management
   saveDigitalFootprint(userId: string, data: any): void {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return;
     }
     const key = `${STORAGE_KEYS.DIGITAL_FOOTPRINT}-${userId}`;
@@ -529,7 +530,7 @@ class LocalStorageService {
   // Data Broker Removals Management
   saveDataBrokerRemoval(userId: string, data: any): void {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return;
     }
     const key = `${STORAGE_KEYS.DATA_BROKER_REMOVALS}-${userId}`;
@@ -582,7 +583,7 @@ class LocalStorageService {
   // Personal Data Inventory Management
   savePersonalDataInventory(userId: string, data: any[]): void {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return;
     }
     const key = `${STORAGE_KEYS.PERSONAL_DATA_INVENTORY}-${userId}`;
@@ -617,7 +618,7 @@ class LocalStorageService {
   // Challenge Progress Management
   saveChallengeProgress(userId: string, progress: any): void {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return;
     }
     const key = `${STORAGE_KEYS.CHALLENGE_PROGRESS}-${userId}`;
@@ -651,7 +652,7 @@ class LocalStorageService {
   // Preferences Management
   savePreferences(userId: string, preferences: any): void {
     if (!this.isLocalStorageAvailable()) {
-      console.warn('localStorage is not available');
+      logger.warn('localStorage is not available');
       return;
     }
     const key = `${STORAGE_KEYS.PREFERENCES}-${userId}`;

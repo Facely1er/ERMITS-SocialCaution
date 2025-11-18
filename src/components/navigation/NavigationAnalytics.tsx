@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
+import logger from '../../utils/logger';
 
 interface NavigationEvent {
   path: string;
@@ -51,7 +52,7 @@ const NavigationAnalytics: React.FC<NavigationAnalyticsProps> = ({ children }) =
       const trimmedData = existingData.slice(-100);
       localStorage.setItem('navigationAnalytics', JSON.stringify(trimmedData));
     } catch (error) {
-      console.warn('Failed to store navigation analytics:', error);
+      logger.warn('Failed to store navigation analytics:', error);
     }
   }, [sessionStart, navigationEvents]);
 
@@ -132,7 +133,7 @@ const NavigationAnalytics: React.FC<NavigationAnalyticsProps> = ({ children }) =
             existingData.push(performanceData);
             localStorage.setItem('performanceAnalytics', JSON.stringify(existingData.slice(-50)));
           } catch (error) {
-            console.warn('Failed to store performance analytics:', error);
+            logger.warn('Failed to store performance analytics:', error);
           }
         }
       }
@@ -205,7 +206,7 @@ const NavigationAnalytics: React.FC<NavigationAnalyticsProps> = ({ children }) =
       sectionData[section] = (sectionData[section] || 0) + 1;
       localStorage.setItem('sectionAnalytics', JSON.stringify(sectionData));
     } catch (error) {
-      console.warn('Failed to store section analytics:', error);
+      logger.warn('Failed to store section analytics:', error);
     }
 
     // Track common navigation paths
@@ -219,7 +220,7 @@ const NavigationAnalytics: React.FC<NavigationAnalyticsProps> = ({ children }) =
           transitionData[pathTransition] = (transitionData[pathTransition] || 0) + 1;
           localStorage.setItem('transitionAnalytics', JSON.stringify(transitionData));
         } catch (error) {
-          console.warn('Failed to store transition analytics:', error);
+          logger.warn('Failed to store transition analytics:', error);
         }
       }
     }

@@ -6,6 +6,7 @@ import {
   mockUser
 } from '../data/mockData';
 import type { Persona, CautionItem, CautionStats } from './cautionApi';
+import logger from '../utils/logger';
 
 const DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true' || !import.meta.env.VITE_API_URL;
 const STORAGE_KEY = 'ermits-demo-data';
@@ -21,12 +22,12 @@ const getDemoData = () => {
       try {
         return JSON.parse(stored);
       } catch (parseError) {
-        console.error('Failed to parse demo data, resetting:', parseError);
+        logger.error('Failed to parse demo data, resetting:', parseError);
         localStorage.removeItem(STORAGE_KEY);
       }
     }
   } catch (storageError) {
-    console.warn('localStorage not available, using in-memory storage:', storageError);
+    logger.warn('localStorage not available, using in-memory storage:', storageError);
   }
   return {
     user: { ...mockUser },
@@ -39,7 +40,7 @@ const saveDemoData = (data: any) => {
   try {
     localStorage?.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (error) {
-    console.warn('Failed to save demo data to localStorage:', error);
+    logger.warn('Failed to save demo data to localStorage:', error);
   }
 };
 

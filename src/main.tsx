@@ -2,13 +2,14 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import logger from './utils/logger';
 
 // Global error handlers for debugging blank page issues
 if (typeof window !== 'undefined') {
   // Catch unhandled promise rejections
   window.addEventListener('unhandledrejection', (event) => {
-    console.error('Unhandled promise rejection:', event.reason);
-    console.error('Promise rejection details:', {
+    logger.error('Unhandled promise rejection:', event.reason);
+    logger.error('Promise rejection details:', {
       reason: event.reason,
       promise: event.promise
     });
@@ -16,8 +17,8 @@ if (typeof window !== 'undefined') {
 
   // Catch uncaught errors
   window.addEventListener('error', (event) => {
-    console.error('Uncaught error:', event.error);
-    console.error('Error details:', {
+    logger.error('Uncaught error:', event.error);
+    logger.error('Error details:', {
       message: event.message,
       filename: event.filename,
       lineno: event.lineno,
@@ -65,8 +66,8 @@ try {
   );
 } catch (error) {
   // If React rendering fails, show error message
-  console.error('CRITICAL: Failed to render React app:', error);
-  console.error('Error details:', {
+  logger.error('CRITICAL: Failed to render React app:', error);
+  logger.error('Error details:', {
     message: error instanceof Error ? error.message : String(error),
     stack: error instanceof Error ? error.stack : undefined,
     name: error instanceof Error ? error.name : undefined

@@ -18,6 +18,8 @@ An educational privacy platform that helps users learn about digital privacy thr
 - **Privacy Settings Scanner**: Educational analysis of website privacy configurations (uses simulated data for demonstration)
 - **Data Broker Removal**: Guidance and tracking for data broker opt-out requests (educational tool)
 
+**⚠️ Important Note**: Some privacy tools use simulated or educational data for demonstration purposes. These tools are designed for privacy education and awareness, not for real-time monitoring or active protection services.
+
 ### User Experience
 - **Multi-language Support**: English, Spanish, and French
 - **Responsive Design**: Works on desktop, tablet, and mobile devices

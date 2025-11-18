@@ -65,8 +65,8 @@ const DropdownGroup = ({ label, icon: LabelIcon, items }: any) => {
         <ChevronDown className={`h-4 w-4 text-accent transition-all duration-200 flex-shrink-0 ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <nav 
-          className="dropdown-menu absolute top-full left-0 mt-1 w-56 rounded-md bg-card text-text shadow-xl border border-border"
+        <nav
+          className="dropdown-menu absolute top-full left-0 mt-1 w-56 z-[1100] rounded-md bg-card text-text shadow-xl border border-border"
           role="navigation"
           aria-label={`${label} submenu`}
         >

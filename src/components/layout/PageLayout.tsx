@@ -42,7 +42,7 @@ export default function PageLayout({
   return (
     <div className={`min-h-screen ${designSystem.gradients.page}`}>
       {/* Header */}
-      <div className={`${designSystem.gradients.header} text-white`}>
+      <div className={`${designSystem.gradients.header} text-white relative z-10`}>
         <div className={`${designSystem.container.maxWidth} mx-auto ${designSystem.container.padding} py-6 md:py-8`}>
           {/* Mobile-optimized layout */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

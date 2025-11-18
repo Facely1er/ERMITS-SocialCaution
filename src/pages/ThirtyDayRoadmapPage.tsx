@@ -616,4 +616,5 @@ const ThirtyDayRoadmapPage: React.FC = () => {
   );
 };
 
+export { ThirtyDayRoadmapPage };
 export default ThirtyDayRoadmapPage;

@@ -325,6 +325,7 @@ const PersonalDataInventory: React.FC = () => {
                 accept=".json"
                 className="hidden"
                 id="import-json"
+                aria-label="Import JSON file for personal data inventory"
                 ref={(input) => {
                   if (input) {
                     input.onchange = (e) => {

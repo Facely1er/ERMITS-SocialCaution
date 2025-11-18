@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Bell, Search, User } from 'lucide-react';
+import { Menu, X, Bell, Search, User, Home } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import DashboardNav from './DashboardNav';
 import Button from '../common/Button';
+import Logo from '../common/Logo';
 import { useAuth } from '../../components/auth/AuthContext';
 import SearchModal from '../navigation/SearchModal';
 import { useSearchShortcut } from '../../hooks/useKeyboardShortcut';
@@ -43,12 +45,19 @@ const ModernDashboardLayout: React.FC<ModernDashboardLayoutProps> = ({
       {/* Top Navigation Bar */}
       <nav className="bg-primary text-white h-16 flex items-center justify-between px-6 shadow-lg">
         <div className="flex items-center space-x-4">
-          <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">P</span>
-          </div>
-          <h1 className="text-lg font-semibold">PrivacyHub</h1>
+          <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            <Logo size={32} light />
+            <h1 className="text-lg font-semibold">SocialCaution</h1>
+          </Link>
         </div>
         <div className="flex items-center space-x-4">
+          <Link 
+            to="/" 
+            className="hidden md:flex items-center space-x-2 text-white hover:text-accent transition-colors text-sm"
+          >
+            <Home className="h-4 w-4" />
+            <span>Back to Main Site</span>
+          </Link>
           <Button
             variant="ghost"
             size="sm"
@@ -83,15 +92,13 @@ const ModernDashboardLayout: React.FC<ModernDashboardLayoutProps> = ({
         }`}
       >
         <div className="flex items-center justify-between p-6 border-b border-border dark:border-border">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">P</span>
-            </div>
+          <Link to="/dashboard" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+            <Logo size={32} />
             <div>
-              <h2 className="text-lg font-semibold text-text dark:text-text">PrivacyHub</h2>
-              <p className="text-xs text-text-secondary dark:text-text-secondary">Dashboard</p>
+              <h2 className="text-lg font-semibold text-text dark:text-text">SocialCaution</h2>
+              <p className="text-xs text-text-secondary dark:text-text-secondary">Privacy Dashboard</p>
             </div>
-          </div>
+          </Link>
           <Button
             variant="ghost"
             size="sm"
@@ -110,7 +117,7 @@ const ModernDashboardLayout: React.FC<ModernDashboardLayoutProps> = ({
         {showHeader && (
           <header className="modern-header sticky top-0 z-30">
             <div className="px-6 py-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between w-full">
                 <div className="flex items-center space-x-4">
                   <Button
                     variant="ghost"
@@ -135,6 +142,15 @@ const ModernDashboardLayout: React.FC<ModernDashboardLayoutProps> = ({
                 </div>
                 
                 <div className="flex items-center space-x-4">
+                  {/* Back to Main Site Link - Mobile */}
+                  <Link 
+                    to="/" 
+                    className="md:hidden flex items-center space-x-2 text-text-secondary dark:text-text-secondary hover:text-accent transition-colors"
+                    title="Back to Main Site"
+                  >
+                    <Home className="h-5 w-5" />
+                  </Link>
+                  
                   {/* Search */}
                   <div className="relative hidden md:block">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-text-secondary dark:text-text-secondary" />

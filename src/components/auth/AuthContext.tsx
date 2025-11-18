@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 import { LocalUser } from '../../services/localStorageService';
 
 interface User extends LocalUser {}

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const CautionItem = require('../models/CautionItem');
-const RSSFeed = require('../models/RSSFeed');
+// const RSSFeed = require('../models/RSSFeed'); // Unused but kept for future use
 const RSSService = require('../services/RSSService');
 const { protect } = require('../middleware/auth');
 const User = require('../models/User');

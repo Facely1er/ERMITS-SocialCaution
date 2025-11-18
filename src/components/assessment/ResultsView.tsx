@@ -302,7 +302,7 @@ const ResultsView: React.FC<ResultsViewProps> = ({
               </motion.div>
             ))}
         </div>
-        </motion.div>
+      </motion.div>
       )}
 
       {/* Tools Section */}

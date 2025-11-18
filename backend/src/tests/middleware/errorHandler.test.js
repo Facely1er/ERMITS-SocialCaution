@@ -1,5 +1,5 @@
 const errorHandler = require('../../middleware/errorHandler');
-const logger = require('../../utils/logger');
+// const logger = require('../../utils/logger'); // Unused in tests
 
 // Mock logger
 jest.mock('../../utils/logger', () => ({

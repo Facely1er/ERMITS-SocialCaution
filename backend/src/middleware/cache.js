@@ -105,7 +105,7 @@ const getCacheStats = () => {
  * Specific cache key generators
  */
 const keyGenerators = {
-  personas: (req) => 'personas:all',
+  personas: (_req) => 'personas:all',
   personaByName: (req) => `persona:${req.params.name}`,
   userPersona: (req) => `user:${req.user.id}:persona`,
   cautions: (req) => {

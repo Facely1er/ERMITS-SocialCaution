@@ -52,6 +52,7 @@ const VALIDATION_RULES = {
   FRONTEND_URL: {
     validator: (value) => {
       try {
+        // eslint-disable-next-line no-undef
         new URL(value);
         return true;
       } catch {

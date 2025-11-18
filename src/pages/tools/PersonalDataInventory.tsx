@@ -5,7 +5,7 @@ import PageLayout from '../../components/layout/PageLayout';
 import Section from '../../components/common/Section';
 import Card from '../../components/common/Card';
 import Button from '../../components/common/Button';
-import { exportPersonalDataInventoryToPDF, exportPersonalDataInventoryToCSV, exportPersonalDataInventoryToJSON, PersonalDataItem } from '../../utils/toolsExport';
+import { exportPersonalDataInventoryToPDF, exportPersonalDataInventoryToCSV, exportPersonalDataInventoryToJSON } from '../../utils/toolsExport';
 interface DataItem {
   id: string;
   category: 'personal_info' | 'financial' | 'health' | 'social' | 'location' | 'biometric';

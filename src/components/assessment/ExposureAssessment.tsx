@@ -565,10 +565,6 @@ const ExposureAssessment: React.FC<ExposureAssessmentProps> = ({ onComplete, nav
   const getPreviousButtonText = (): string => {
     return 'Previous';
   };
-  
-  const getAssessmentTitle = (): string => {
-    return 'Cybersecurity Exposure Assessment';
-  };
 
   if (!started) {
     return <ExposureStartScreen onStart={handleStart} />;

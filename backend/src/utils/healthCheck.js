@@ -4,7 +4,7 @@
  */
 
 const mongoose = require('mongoose');
-const logger = require('./logger');
+// const logger = require('./logger'); // Unused but kept for future logging
 
 let redisClient = null;
 

@@ -5,7 +5,9 @@ export const designSystem = {
   // Container widths
   container: {
     maxWidth: 'max-w-7xl',
-    padding: 'px-4 sm:px-6 lg:px-8',
+    padding: 'px-3 sm:px-4 lg:px-6', // Reduced side padding for more content space
+    paddingFull: 'px-0', // For full-bleed sections
+    paddingStandard: 'px-4 sm:px-6 lg:px-8', // Original padding (if needed)
   },
 
   // Spacing scale

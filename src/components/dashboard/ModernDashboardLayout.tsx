@@ -60,7 +60,7 @@ const ModernDashboardLayout: React.FC<ModernDashboardLayoutProps> = ({
         </div>
       </nav>
       
-      <div className="flex min-h-[calc(100vh-4rem)]">
+      <div className="flex min-h-[calc(100vh-4rem)] relative">
       {/* Mobile Sidebar Overlay */}
       <AnimatePresence>
         {sidebarOpen && (
@@ -105,7 +105,7 @@ const ModernDashboardLayout: React.FC<ModernDashboardLayoutProps> = ({
       </motion.aside>
 
       {/* Main Content */}
-      <div className="flex-1 w-full overflow-x-hidden">
+      <div className="flex-1 w-full overflow-x-hidden bg-background-secondary dark:bg-background-secondary min-h-[calc(100vh-4rem)] md:min-h-screen">
         {/* Header */}
         {showHeader && (
           <header className="modern-header sticky top-0 z-30">
@@ -187,11 +187,12 @@ const ModernDashboardLayout: React.FC<ModernDashboardLayoutProps> = ({
         )}
         
         {/* Page Content */}
-        <main id="dashboard-main" className="p-4 md:p-6" role="main">
+        <main id="dashboard-main" className="p-4 md:p-6 bg-background-secondary dark:bg-background-secondary min-h-full" role="main">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
+            className="w-full"
           >
             {children}
           </motion.div>

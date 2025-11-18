@@ -38,7 +38,8 @@ const ModernDashboardHomePage: React.FC = () => {
   useEffect(() => {
     if (location.state?.assessmentCompleted) {
       setShowAssessmentComplete(true);
-      setTimeout(() => setShowAssessmentComplete(false), 5000);
+      const timer = setTimeout(() => setShowAssessmentComplete(false), 5000);
+      return () => clearTimeout(timer);
     }
   }, [location]);
 

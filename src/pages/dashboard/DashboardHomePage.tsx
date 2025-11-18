@@ -92,7 +92,7 @@ const DashboardHomePage: React.FC = () => {
     );
   }
 
-  const radarData = Object.entries(data.categoryScores).map(([category, score]) => ({
+  const radarData = Object.entries(data.categoryScores || {}).map(([category, score]) => ({
     category,
     score
   }));
@@ -222,7 +222,7 @@ const DashboardHomePage: React.FC = () => {
 
         {/* Compact Two-Column Layout */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mb-4">
-          <ScoreHistory data={data.assessmentHistory} />
+          <ScoreHistory data={data.assessmentHistory || []} />
           <Card className="p-3">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-base font-semibold">Quick Actions</h3>
@@ -287,7 +287,7 @@ const DashboardHomePage: React.FC = () => {
         <div className="mb-4">
           <ResourceRecommendations
             resources={recommendedResources.slice(0, 2)}
-            categoryScores={data.categoryScores}
+            categoryScores={data.categoryScores || {}}
             priorityAreas={['Account Security', 'Privacy Settings', 'Data Protection']}
           />
         </div>
@@ -307,7 +307,7 @@ const DashboardHomePage: React.FC = () => {
           </div>
 
           <div className="space-y-2">
-            {data.assessmentHistory.slice(-2).map((assessment, index) => (
+            {(data.assessmentHistory || []).slice(-2).map((assessment, index) => (
               <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded-md">
                 <div className="flex items-center">
                   <div className="p-1.5 bg-light-blue rounded-full mr-2">

@@ -1,13 +1,11 @@
+@import "tailwindcss";
+
 @import url('./styles/variables.css');
 @import url('./styles/layout.css');
 @import url('./styles/header-footer.css');
 @import url('./styles/home.css');
 @import url('./styles/blog.css');
 @import url('./styles/modern-dashboard.css');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   * {

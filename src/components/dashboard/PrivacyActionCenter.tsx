@@ -143,7 +143,7 @@ const PrivacyActionCenter: React.FC<PrivacyActionCenterProps> = ({
                 variant="outline"
                 size="sm"
                 className="ml-4 flex-shrink-0"
-                onClick={() => navigate('/dashboard/action-plan')}
+                onClick={() => navigate('/dashboard/action-plan', { state: { recommendationId: rec.id } })}
               >
                 Take Action
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -163,7 +163,12 @@ const PrivacyActionCenter: React.FC<PrivacyActionCenterProps> = ({
           <p className="text-sm text-gray-600 mb-4">
             Request access to your personal data
           </p>
-          <Button variant="outline" size="sm" fullWidth>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            fullWidth
+            onClick={() => navigate('/dashboard/rights-checkup')}
+          >
             Make Request
           </Button>
         </Card>
@@ -176,7 +181,12 @@ const PrivacyActionCenter: React.FC<PrivacyActionCenterProps> = ({
           <p className="text-sm text-gray-600 mb-4">
             Export your data in a portable format
           </p>
-          <Button variant="outline" size="sm" fullWidth>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            fullWidth
+            onClick={() => navigate('/resources/tools/personal-data-inventory')}
+          >
             Export Data
           </Button>
         </Card>
@@ -189,7 +199,12 @@ const PrivacyActionCenter: React.FC<PrivacyActionCenterProps> = ({
           <p className="text-sm text-gray-600 mb-4">
             Manage your privacy preferences
           </p>
-          <Button variant="outline" size="sm" fullWidth>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            fullWidth
+            onClick={() => navigate('/dashboard/settings')}
+          >
             Update Settings
           </Button>
         </Card>
